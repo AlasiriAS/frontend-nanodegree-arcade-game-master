@@ -1,12 +1,11 @@
 // Enemies our player must avoid
-var Enemy = function(x,y) {
+var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
-
     this.sprite = 'images/enemy-bug.png';
     this.height = 65;
     this.width = 95;
-    this.speed = 100 + Math.floor(Math.random() * 200) ; 
+    this.speed = 100 + Math.floor(Math.random() * 200);
 };
 
 // Update the enemy's position, required method for game
@@ -26,10 +25,9 @@ Enemy.prototype.update = function(dt) {
     if (player.x < (this.x + this.width) &&
         (player.x + player.width) > this.x &&
         player.y < (this.y + this.height) &&
-        (player.y + player.height) > this.y){
+        (player.y + player.height) > this.y) {
         //player relocation
-        player.x = 200;
-        player.y = 400;
+        resetGame();
     }
 
 };
@@ -41,7 +39,7 @@ Enemy.prototype.render = function() {
 
 
 // player class
-let Player = function(x, y, sprite){
+let Player = function(x, y, sprite) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;
@@ -52,8 +50,11 @@ let Player = function(x, y, sprite){
 // an update() method
 Player.prototype.update = function(dt) {
     // check if the player reach the water block(Wins) 
-    if (player.y < 65){ 
-        playerWon();
+    if (player.y < 65) {
+        // timeout for the game to restart
+        setTimeout(() => {
+            playerWon();
+        }, 800);
     }
 
 };
@@ -64,17 +65,14 @@ Player.prototype.render = function() {
 
 // a handleInput() method.
 // it change x,y based on keypushed + it ensure the play will stay on canvas
-Player.prototype.handleInput = function(keyPushed){
-    if (keyPushed === 'left' && this.x > 0){ 
+Player.prototype.handleInput = function(keyPushed) {
+    if (keyPushed === 'left' && this.x > 0) {
         this.x -= 100;
-    }
-    else if (keyPushed === 'up' && this.y > 0){ 
+    } else if (keyPushed === 'up' && this.y > 0) {
         this.y -= 83;
-    }
-    else if (keyPushed === 'right' && this.x < 400 ){
+    } else if (keyPushed === 'right' && this.x < 400) {
         this.x += 100;
-    }
-    else if (keyPushed === 'down' && this.y < 400){
+    } else if (keyPushed === 'down' && this.y < 400) {
         this.y += 83;
     }
 }
@@ -83,7 +81,7 @@ Player.prototype.handleInput = function(keyPushed){
 const enemiesPosition = [64, 147, 230]; // 83 px difference 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = enemiesPosition.map((y, x) => {
-    return new Enemy((-200 * (x+1)), y);
+    return new Enemy((-200 * (x + 1)), y);
 });
 // player object in a variable called Player
 const player = new Player(200, 400, 'images/char-boy.png');
@@ -91,15 +89,15 @@ const player = new Player(200, 400, 'images/char-boy.png');
 //console.log(allEnemies);
 let winingScore = 0;
 // a function for when player wins
-function playerWon(){
+function playerWon() {
     //console.log('You Won!');
     // maybe a congrat message or count score appear on the screen 
     winingScore++;
     resetGame();
-}   
+}
 
 // a function for reset the game
-function resetGame(){
+function resetGame() {
     // reseting player position back to its start
     player.x = 200;
     player.y = 400;
@@ -107,7 +105,7 @@ function resetGame(){
     allEnemies[0].x = -200;
     allEnemies[1].x = -200;
     allEnemies[2].x = -200;
-} 
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
