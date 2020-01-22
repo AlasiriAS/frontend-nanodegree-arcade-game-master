@@ -1,10 +1,11 @@
+'use strict';
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
     this.sprite = 'images/enemy-bug.png';
     this.height = 65;
-    this.width = 95;
+    this.width = 80;
     this.speed = 100 + Math.floor(Math.random() * 200);
 };
 
@@ -27,7 +28,10 @@ Enemy.prototype.update = function(dt) {
         player.y < (this.y + this.height) &&
         (player.y + player.height) > this.y) {
         //player relocation
+        //alert('stop');
         resetGame();
+        
+
     }
 
 };
@@ -44,13 +48,13 @@ let Player = function(x, y, sprite) {
     this.y = y;
     this.sprite = sprite;
     this.height = 75;
-    this.width = 65;
+    this.width = 55;
 }
 
 // an update() method
 Player.prototype.update = function(dt) {
     // check if the player reach the water block(Wins) 
-    if (player.y < 65) {
+    if (this.y < 65) {
         // timeout for the game to restart
         setTimeout(() => {
             playerWon();
