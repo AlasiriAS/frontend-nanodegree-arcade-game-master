@@ -1,20 +1,16 @@
 # Classic Arcade Game Clone Project
 
-## Table of Contents
-
-- [Instructions](#instructions)
-- [Contributing](#contributing)
-
 ## Instructions
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+This is Udacity's third project of Front-end developer Nanodegree, its job to imporve our Object-oriented Javascript.
+The game is simply like the classic arcade game Frogger.
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+You have to aviod enemy and make it to the other side safly
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
-
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+## How to play?
+ - Simply Download a clone of the project and run it locally by open 'index.html' file.
+ - You can controll the player by arrow keys (up, down, left, and right).
+ - If the enmey hit you will restart at the begaining.
+ - If you reach the sea, you will win.
+ 
+This is my earlly ver. of the game, I will do improvements with time. 
